@@ -1,11 +1,25 @@
-<table class="table">
-  <thead>
-    
-  </thead>
-  <tbody>
-    <tr>
-      <td>data 1</td>
-      <td>data 2</td>
-    </tr>
-  </tbody>
-</table>
+<h1>Contact List</h1>
+<hr>
+{{#each joinedTable}}
+    <div class="row">
+        <div class="contact-img">
+            <img class="contact-img" src="http://placehold.it/150x200" alt="">
+        </div>
+        <div class="contact-section">
+            <h2>{{first_name}} {{last_name}}</h2>
+            <table class="table contact-table">
+                <tr>
+                    <td>
+                        <p>Phone: {{phone_number}}</p>
+                        <p>Email: {{email_address}}</p>
+                    </td>
+                    <td>
+                        <p>{{line_1}}</p>
+                        {{#if line_2}}<p>{{line_2}}</p>{{/if}}
+                        <p>{{city}}, {{zip}}</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+{{/each}}

@@ -6,7 +6,7 @@ exports.up = function(knex) {
       table.string('phone_number').notNullable().default('')
       table.string('email_address').notNullable().default('')
       table.text('image_url').notNullable().default('')
-      table.string('addresses_id').references('addresses.id')
+      table.integer('addresses_id').references('addresses.id')
       table.timestamps(true, true)
     })
 };

@@ -1,7 +1,7 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('addresses').del()
+  return knex('addresses')
     .then(function () {
       // Inserts seed entries
       return knex('addresses').insert([
@@ -15,17 +15,21 @@ exports.seed = function(knex) {
         {
           id: 2,
           line_1: '2address line 1',
-          line_2: '2address line 2',
+          line_2: '',
           city: '2city line',
-          zip: '2zip line'
+          zip: 'newnew'
         },
         {
           id: 3,
           line_1: '3address line 1',
           line_2: '3address line 2',
           city: '3city line',
-          zip: '3zip line'
+          zip: 'new'
         }
-      ]);
-    });
-};
+      ])
+    }).then(() => {
+    return knex.raw(
+      "SELECT setval('addresses_id_seq', (SELECT MAX(id) FROM addresses))"
+    )
+  })
+}
