@@ -7,24 +7,24 @@ exports.seed = function(knex) {
       return knex('addresses').insert([
         {
           id: 1,
-          line_1: '1address line 1',
-          line_2: '1address line 2',
+          line_1: '1 line 1',
+          line_2: '1 line 2',
           city: '1city line',
           zip: '1zip line'
         },
         {
           id: 2,
-          line_1: '2address line 1',
+          line_1: '2 line 1',
           line_2: '',
-          city: '2city line',
-          zip: 'newnew'
+          city: '2city',
+          zip: '2zip'
         },
         {
           id: 3,
-          line_1: '3address line 1',
-          line_2: '3address line 2',
-          city: '3city line',
-          zip: 'new'
+          line_1: '3 line 1',
+          line_2: '3 line 2',
+          city: '3city',
+          zip: '3zip'
         }
       ])
     }).then(() => {
