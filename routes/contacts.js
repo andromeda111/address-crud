@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../db')
 
-/* GET home page. */
+/* GET New Contact Form. */
 router.get('/new', function(req, res, next) {
     db('addresses').innerJoin('contacts', 'addresses.id', 'contacts.addresses_id').then(joinedTable => {
       db('addresses').then(existingAddresses => {
@@ -11,6 +11,9 @@ router.get('/new', function(req, res, next) {
     })
 });
 
+// GET individual contact
+
+// POST new contact //
 router.post('/new', function(req, res, next) {
     var newAddress = {
         line_1: req.body['new-line_1'],
@@ -31,9 +34,9 @@ router.post('/new', function(req, res, next) {
 
       // Validation: Does Address already exist?
             for (element of existingAddresses) {
-                if (element.line_1 === newAddress.line_1) {
+                if (element.line_1 === newAddress.line_1 && element.line_2 === newAddress.line_2) {
                     console.log('existing, Reject');
-                    return res.render('contacts/new', { error: 'Address already exists.', joinedTable })
+                    return res.render('contacts/new', { error: 'Address already exists.', joinedTable, existingAddresses })
                 }
             }
 
@@ -64,8 +67,6 @@ router.post('/new', function(req, res, next) {
               }
         })
     })
-    //////////
-
 })
 
 module.exports = router;
