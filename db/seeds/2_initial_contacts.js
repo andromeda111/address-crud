@@ -32,6 +32,15 @@ exports.seed = function(knex) {
           image_url: '3img',
           addresses_id: 1
         },
+        {
+          id: 4,
+          first_name: '4first',
+          last_name: '4last',
+          phone_number: '4phone',
+          email_address: '4email',
+          image_url: '4img',
+          addresses_id: 2
+        }
       ])
     }).then(() => {
     return knex.raw(

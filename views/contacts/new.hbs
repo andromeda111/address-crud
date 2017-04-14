@@ -1,0 +1,54 @@
+<h1>Add New Contact</h1>
+
+<div class="row">
+    <div class="panel panel-body">
+
+        <form action="/contacts" method="POST" class="form form-inline">
+            <div class="">
+                <div class="form-group">
+                    <label for="new-first_name">First Name</label> <input name="new-first_name" type="text" class="form-control text-center input-sm" value="{{data.first_name}}">
+                </div>
+                <div class="form-group">
+                    <label for="new-last_name">Last Name</label> <input name="new-last_name" type="text" class="form-control text-center input-sm" value="{{data.last_name}}">
+                </div>
+
+            </div>
+            <br>
+            <div class="">
+                <div class="form-group">
+                    <label for="new-phone_number">Phone Number</label> <input name="new-phone_number" type="text" class="form-control text-center input-sm" value="{{data.phone_number}}">
+                </div>
+                <div class="form-group">
+                    <label for="new-email_address">Email</label> <input name="new-email_address" type="email" class="form-control text-center input-sm" value="{{data.email_address}}">
+                </div>
+
+            </div>
+            <br>
+            <div class="">
+                <div class="form-group">
+                    <label for="new-img_url">Image URL</label> <input name="new-img_url" type="text" class="form-control text-center input-sm" value="{{data.img_url}}">
+                </div>
+
+            </div>
+            <br>
+            <div class="">
+                <div class="form-group">
+                    <label for="new-address_select">Select an Existing Address (if applicable) URL</label><br><select name="new-address_select" type="select" class="form-control text-center input-sm">
+                <!-- <option value="create">Create New (below)</option> -->
+                {{#each joinedTable}}
+                <option name="new-address_select" value="{{addresses_id}}">{{line_1}}</option>
+                {{/each}}
+              </select>
+                </div>
+
+            </div>
+            <br>
+
+            <div class="form-group text-center">
+                <input class="btn btn-default" type="submit">
+            </div>
+        </form>
+
+    </div>
+
+</div>
