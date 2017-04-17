@@ -10,22 +10,28 @@ router.get('/', function(req, res, next) {
   })
 });
 
-/* DELETE contact */
-router.delete('/:id', function(req, res, next) {
-  console.log(req.body);
-  var id = req.params.id
-  console.log(id + 'id');
-  var asdf = req.addresses_id
-  console.log(asdf + 'asdf');
-  db('contacts').del().where({id}).then((data) => {
-    console.log(data + "data");
-    //
-    // db('addresses').del().where({id}, {asdf}).then(() => {
-    //   db('addresses').innerJoin('contacts', 'addresses.id', 'contacts.addresses_id').then(joinedTable => {
-    //     res.render('index', {joinedTable});
-    //   })
-    // })
-  })
+router.delete('/:id', (req, res, next) => {
+    let id = req.params.id
+    db('contacts')
+        .where({ id })
+        .del()
+        .returning('addresses_id')
+        .then(addressId => {
+            db('contacts')
+                .count()
+                .where('addresses_id', addressId[0])
+                .then(count => {
+                    if (count[0].count) {
+                        db('addresses')
+                            .del()
+                            .where('id', addressId[0])
+                            .then(() => {
+                                res.redirect('/')
+                            })
+                    }
+                    res.redirect('/')
+                })
+        })
 });
 
 module.exports = router;
